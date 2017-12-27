@@ -22,4 +22,18 @@ class V1::RecordsController < ApplicationController
       render json: {errors: record.errors.full_messages}
     end
   end
+
+  def update
+    record = Record.find_by(id: params[:id])
+    if record.update(
+      title: params[:title],
+      artist: params[:artist],
+      year: params[:year],
+      price: params[:price]
+      )
+      render json: record.as_json
+    else
+      render json: {errors: record.errors.full_messages}
+    end
+  end
 end
