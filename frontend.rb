@@ -7,6 +7,7 @@ p "[1] See all of my records"
 p "[2] See a particular record"
 p "[3] Create a new record option"
 p "[4] Update a record option"
+p "[5] Delete a record option"
 
 user_input = gets.chomp
 
@@ -47,4 +48,9 @@ elsif user_input == '4'
   the_params[:price]
   response = Unirest.patch("localhost:3000/v1/records/#{record_id}", parameters: the_params)
   pp response.body
+elsif user_input == '5'
+  p "Enter the id of the record you would like delete"
+  record_id = gets.chomp
+  response = Unirest.delete("localhost:3000/v1/records/#{record_id}")
+  pp response
 end

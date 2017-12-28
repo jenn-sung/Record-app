@@ -36,4 +36,10 @@ class V1::RecordsController < ApplicationController
       render json: {errors: record.errors.full_messages}
     end
   end
+
+  def destroy
+    record = Record.find_by(id: params[:id])
+    record.destroy
+    render json: record.as_json
+  end
 end
